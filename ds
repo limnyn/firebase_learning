@@ -1,0 +1,71 @@
+[33mcommit 6696a1ac01ba40a52b36881bfc01f22db3dec468[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Wed Jan 11 18:34:29 2023 +0900
+
+    add Edit and Delete tweet func
+
+[33mcommit bd22f33b7e9bdfe0125c368ea0700e875e4d2421[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Wed Jan 11 18:02:51 2023 +0900
+
+    add realtime tweets display
+
+[33mcommit 088090f49d82b980f88ebf12a758cdfb65146c24[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 10 21:46:41 2023 +0900
+
+    add firestore DB and add,get
+
+[33mcommit 4855588c1081b333eaa37ce300b92bf17d8d1d09[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 10 16:07:15 2023 +0900
+
+    add LogOut Func , add Navigator.js, Profile.js
+
+[33mcommit 54e047fdb866e95e626e9e1591fd5d303a69d3fb[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 10 15:40:22 2023 +0900
+
+    add Social LogIn for google and github
+
+[33mcommit 8de4b1aee074b35626a44fea50bda18931318dd7[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Mon Jan 9 22:03:14 2023 +0900
+
+    Createing Account - register Email
+
+[33mcommit d17084182a223ffdd15e9156c6f06a19f8b9583d[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Fri Jan 6 14:41:29 2023 +0900
+
+    add Auth onchange
+
+[33mcommit 46fb9c41281402b70d99071e8daf22e82daf5f3c[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Fri Jan 6 13:59:03 2023 +0900
+
+    add authservicde
+
+[33mcommit 9ecd7e86f71e0bae42941b744f93f978dc1df9fc[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Wed Jan 4 20:51:59 2023 +0900
+
+    add Router
+
+[33mcommit fb906be79795cf2bbdeea4e202e43f0e9435b9fc[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 3 23:05:45 2023 +0900
+
+    install firebase
+
+[33mcommit 102ca68cfd3702d42510da87e6564da8e856256a[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 3 21:44:10 2023 +0900
+
+    1.0 Init app
+
+[33mcommit 36904cc9f69fe2697924cb0eddd22e3c0530909d[m
+Author: limnyn <hogandi001@gmail.com>
+Date:   Tue Jan 3 21:37:59 2023 +0900
+
+    Initialize project using Create React App
