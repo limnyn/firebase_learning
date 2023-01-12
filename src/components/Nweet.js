@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 const Nweet = ({ nweetObj, isOwner }) => {
+  //checking is nweet in update process & instance for update tweet
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
-  const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
+  const NweetTextRef = doc(dbService, `nweets/${nweetObj.id}`);
+
+  //delete part
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this nweet?");
     if (ok) {
@@ -13,6 +16,8 @@ const Nweet = ({ nweetObj, isOwner }) => {
       await deleteDoc(NweetTextRef);
     }
   };
+
+  //update part
   const toggleEditing = () => setEditing((prev) => !prev);
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -25,6 +30,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
     } = event;
     setNewNweet(value);
   };
+
   return (
     <div>
       {editing ? (
