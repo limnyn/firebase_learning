@@ -1,8 +1,14 @@
 import { dbService, storageService } from "fBase";
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useRef, useState } from "react";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import { ref, uploadString } from "firebase/storage";
+import {
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  addDoc,
+} from "firebase/firestore";
+import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 
 import Nweet from "components/Nweet";
 
@@ -10,7 +16,7 @@ const Home = ({ userObj }) => {
   //state for form
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const [attachemnt, setAttachment] = useState();
+  const [attachemnt, setAttachment] = useState("");
   const fileInput = useRef();
 
   //make realtime nweet check by using snapshot
@@ -30,16 +36,27 @@ const Home = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const fileRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
-    const response = await uploadString(fileRef, attachemnt, "data_url");
-    console.log(response);
+    let attachmentUrl = "";
+    if (attachemnt !== "") {
+      const attachemntRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+      const response = await uploadString(
+        attachemntRef,
+        attachemnt,
+        "data_url"
+      );
+      console.log(await getDownloadURL(response.ref));
+      attachmentUrl = await getDownloadURL(response.ref);
+    }
+    const nweetObj = {
+      text: nweet,
+      createdAt: Date.now(),
+      creatorId: userObj.uid,
+      attachmentUrl,
+    };
     // //save nweet where collection's name is "nweets"
-    // await addDoc(collection(dbService, "nweets"), {
-    //   text: nweet,
-    //   createdAt: Date.now(),
-    //   creatorId: userObj.uid,
-    // });
-    // setNweet("");
+    await addDoc(collection(dbService, "nweets"), nweetObj);
+    setNweet("");
+    setAttachment("");
   };
 
   const onChange = (event) => {
@@ -64,7 +81,7 @@ const Home = ({ userObj }) => {
     reader.readAsDataURL(theFile);
   };
   const onClearAttachment = () => {
-    setAttachment(null);
+    setAttachment("");
     fileInput.current.value = "";
   };
 
@@ -105,3 +122,10 @@ const Home = ({ userObj }) => {
   );
 };
 export default Home;
+
+/**
+ * 1) Storage().ref().child() return Reference - storage의 이미지 폴더 생성.
+2) Reference.putString() - 이 작업이 폴더에 이미지를 넣는 작업.
+3) Reference.putString() return (완료시 UploadTaskSnapshot을 받음)
+4) UploadTaskSnapshot.ref.getDownloadURL() - 이 작업에서 ref 속성을 쓰면 그 이미지의 Reference에 접근 가능, 이미지가 저장된 stroage 주소를 받을 수 있다.
+ */
