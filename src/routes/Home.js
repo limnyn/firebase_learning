@@ -44,7 +44,6 @@ const Home = ({ userObj }) => {
         attachemnt,
         "data_url"
       );
-      console.log(await getDownloadURL(response.ref));
       attachmentUrl = await getDownloadURL(response.ref);
     }
     const nweetObj = {
@@ -72,7 +71,6 @@ const Home = ({ userObj }) => {
     const theFile = files[0];
     const reader = new FileReader();
     reader.onloadend = (finishedEvent) => {
-      console.log(finishedEvent);
       const {
         currentTarget: { result },
       } = finishedEvent;
